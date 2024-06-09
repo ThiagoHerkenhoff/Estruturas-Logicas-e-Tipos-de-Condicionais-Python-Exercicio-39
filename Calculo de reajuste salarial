@@ -1,0 +1,52 @@
+# 39 - Uma empresa decide dar um aumento aos seus funcionários de acordo com uma tabela que considera o salário
+# atual e o tempo de serviço de cada funcionário. Os funcionários com o menor salário terão um aumento
+# proporcionalente maior que os funcionários com um salário maior, e conforme o tempo de serviço na empresa,
+# cada funcionário irá receber um bônus adicional de salário. Faça um programa que leia:
+
+# O valor do salário atual do funcionário:
+# O tempo de serviço desse funcionário na empresa (número de anos de trabalho na empresa)
+
+# Use as tabelas abaixo para calcular o salário reajustado deste funcionário e imprima o valo do salário final
+# reajustado, ou uma mensagem caso o funcionário não tenha direito a nenhum aumento
+
+#   Salário Atual           Reajuste %              Tempo de Serviço            Bônus
+#    até 500,00                 25%                 Abaixo de 1 ano            Sem Bônus
+#    até 1000,00                20%                  de 1 à 3 anos             100,00
+#    até 1500,00                15%                  de 4 à 6 anos             200,00
+#    até 2000,00                10%                  de 7 à 10 anos            300,00
+# Acima de 2000,00         Sem Reajuste             Mais de 10 anos            500,00
+
+salario_atual = float(input("Informe o salário atual do funcionário: "))
+tempo_servico = int(input("Informe o tempo de serviço do funcionário: "))
+
+reajuste = 0
+bonus = 0
+
+if salario_atual <= 500.00:
+    reajuste = 0.25
+    if tempo_servico < 1:
+        bonus = 0
+elif salario_atual <= 1000.00:
+    reajuste = 0.20
+    if tempo_servico >= 1 and tempo_servico <= 3:
+        bonus = 100.00
+elif salario_atual <= 1500.00:
+    reajuste = 0.15
+    if tempo_servico >= 4 and tempo_servico <= 6:
+        bonus = 200.00
+elif salario_atual <= 2000.00:
+    reajuste = 0.10
+    if tempo_servico >= 7 and tempo_servico <= 10:
+        bonus = 300.00
+else:
+    reajuste = 0
+    if tempo_servico > 10:
+        bonus = 500.00
+
+if reajuste > 0 or bonus > 0:
+    aumento = salario_atual * reajuste
+    salario_final = salario_atual + aumento + bonus
+    print(f"O salário final com reajuste e bonus é de R$ {salario_final:.2f}")
+
+else:
+    print("Esse funcionário não teve aumento")
